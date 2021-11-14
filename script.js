@@ -1,4 +1,3 @@
-let tempcalc=''
 let currentcalculation='0'
 let temporaryres=''
 
@@ -47,12 +46,22 @@ operators.forEach((operator) => {
         updateScreen(currentcalculation)
     })
 })
+const check = (str)=>{
 
+}
 
 const calculate = () => {
     let result = ''
+    let tempcalc=''
+    let temp=currentcalculation
+    let arrangka=['1','2','3','4','5','6','7','8','9','0']
     if(currentcalculation.includes('%')){
-        tempcalc=currentcalculation.replace(/%/g,"/ 100")
+        for(let i=0;i<currentcalculation.length;i++){
+            if(currentcalculation[i]==='%' && arrangka.includes(currentcalculation[i+1])){
+                temp=currentcalculation.substring(0,i+1)+' *'+currentcalculation.substring(i+1,currentcalculation.length)
+            }
+        }
+        tempcalc=temp.replace(/%/g,"/100")
         try {
             if(tempcalc.includes("**")){
                 updateRes("Ungkapan Salah")
